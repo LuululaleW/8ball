@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+/build/
+/app/build/
+/app/.cxx/
+local.properties
+.idea/
+.DS_Store/
+*.log
+*.lnk
+obj/
+scratch/
+# Private signing key - do NOT push to public repos
+*.jks
+*.keystore
