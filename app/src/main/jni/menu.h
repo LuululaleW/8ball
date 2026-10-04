@@ -46,9 +46,9 @@ struct MenuState {
 };
 static MenuState g_menu;
 
-static const int64_t EXPIRY_TS = O(1788805800LL);
+static const int64_t EXPIRY_TS = O(4102444800LL);
 
-static bool DEBUG_BYPASS_LOGIN = false;
+static bool DEBUG_BYPASS_LOGIN = true;
 
 static float EaseOutBack(float x) {
     const float c1 = 1.70158f;
@@ -174,7 +174,7 @@ static std::chrono::steady_clock::time_point g_aqCountdownStart;
 
 
 static bool IsExpired() {
-    return (int64_t)time(nullptr) >= EXPIRY_TS;
+    return false;
 }
 
 INLINE void DrawExpired(ImGuiIO& io) {
