@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
       - uses: actions/checkout@v4
 
@@ -17,13 +20,13 @@ jobs:
           java-version: 17
           cache: gradle
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install SDK + NDK 24
         run: |
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+          sdkmanager --version
+          yes | sdkmanager --licenses || true
           sdkmanager --install "platforms;android-34" "build-tools;34.0.0" "ndk;24.0.8215888"
-          yes | sdkmanager --licenses
+          ls $ANDROID_HOME/ndk/
 
       - name: Build Debug
         run: |
